@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        ruby: {
+          500: '#E32636',
+        },
+        charcoal:'#333333',
+      }
+    },
     fontFamily: {
       'sans': ['ui-sans-serif', 'system-ui'],
       'serif': ['ui-serif', 'Georgia'],
@@ -14,7 +21,8 @@ export default {
       'body': ['"Open Sans"'],
       'bangers':['Bangers', 'cursive'],
       'kanit':['Kanit', 'sans-serif']
-    }
+    },
+    
   },
   plugins: [require("daisyui")],
 }
