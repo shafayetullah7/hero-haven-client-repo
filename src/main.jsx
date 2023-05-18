@@ -8,6 +8,8 @@ import Home from './components/home/Home.jsx'
 import AuthProvider from './components/access/AuthProvider.jsx'
 import Login from './components/access/Login.jsx'
 import Register from './components/access/Register.jsx'
+import Main from './components/Main.jsx'
+import AddToy from './components/access/addToy/AddToy.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -17,7 +19,17 @@ const routes = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<Home></Home>
+        element:<Main></Main>,
+        children:[
+          {
+            path:'/',
+            element:<Home></Home>
+          },
+          {
+            path:'/add-toy',
+            element:<AddToy></AddToy>
+          }
+        ]
       },
       {
         path:'/login',
