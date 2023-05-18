@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import Select from 'react-select';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AddToy = () => {
+    AOS.init();
+
     const options = [
         { value: 'marvel', label: 'Marvel' },
         { value: 'dc', label: 'DC' },
@@ -42,7 +46,16 @@ const AddToy = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-10 rounded-xl shadow-2xl bg-gray-100 mt-16">
+    <div className="max-w-xl mx-auto p-10 rounded-xl shadow-2xl bg-gray-100 mt-16"
+    data-aos="fade-down"
+    data-aos-offset="0"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top-center"
+    >
       <h1 className="text-2xl font-bold mb-4 text-center text-charcoal">Add Toy</h1>
 
         <form onSubmit={handleSubmit} className="grid gap-4">

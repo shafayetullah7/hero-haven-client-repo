@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-const Footer = () => {
+const FooterComp = () => {
     return (
         <footer className="footer p-10 bg-neutral text-neutral-content">
         <div>
@@ -22,4 +22,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default FooterComp;

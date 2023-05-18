@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './shared/Navbar';
-import Footer from './shared/Footer';
+// import Footer from './shared/Footer';
+import FooterComp from './shared/FooterComp';
+// import Footer from './shared/Footer';
 
 const Main = () => {
     return (
@@ -12,7 +14,7 @@ const Main = () => {
                 <Outlet></Outlet>
             </div>
             <div className='mt-64'>
-                <Footer></Footer>
+                <FooterComp></FooterComp>
             </div>
         </div>
     );
