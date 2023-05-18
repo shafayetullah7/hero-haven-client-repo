@@ -9,7 +9,7 @@ import AuthProvider from './components/access/AuthProvider.jsx'
 import Login from './components/access/Login.jsx'
 import Register from './components/access/Register.jsx'
 import Main from './components/Main.jsx'
-import AddToy from './components/access/addToy/AddToy.jsx'
+import AddToy from './components/addToy/AddToy.jsx'
 
 const routes = createBrowserRouter([
   {

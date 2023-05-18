@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../access/AuthProvider";
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
                 </ul>
                 </div>
                 {/* <a className="font-kanit text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 px-7 py-2 rounded-lg tracking-widest">He<span>ro Ha</span>ven</a> */}
-                <a className="font-kanit text-3xl font-bold text-ruby-500 rounded-lg tracking-widest border-b-4 border-[#E32636] active:scale-95 duration-150 cursor-pointer">Hero <span className="text-charcoal">Haven</span></a>
+                <Link to={'/'} className="font-kanit text-3xl font-bold text-ruby-500 rounded-lg tracking-widest border-b-4 border-[#E32636] active:scale-95 duration-150 cursor-pointer">Hero <span className="text-charcoal">Haven</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex gap-8 text-charcoal item-center justify-center px-1">
