@@ -5,6 +5,9 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import ErrorPage from './components/ErrorPage.jsx'
 import Home from './components/home/Home.jsx'
+import AuthProvider from './components/access/AuthProvider.jsx'
+import Login from './components/access/Login.jsx'
+import Register from './components/access/Register.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +18,14 @@ const routes = createBrowserRouter([
       {
         path:'/',
         element:<Home></Home>
+      },
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/register',
+        element:<Register></Register>
       }
     ]
   }
@@ -22,6 +33,6 @@ const routes = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={routes}></RouterProvider>
+    <AuthProvider><RouterProvider router={routes}></RouterProvider></AuthProvider>
   </React.StrictMode>,
 )

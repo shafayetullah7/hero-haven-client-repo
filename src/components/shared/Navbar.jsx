@@ -1,14 +1,14 @@
 
 const Navbar = () => {
     const navItems = <>
-    <li><a>Home</a></li>
-    <li><a>All Toys</a></li>
-    <li><a>My Toys</a></li>
-    <li><a>Add A Toy</a></li>
-    <li><a>Blogs</a></li>
+    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700  hover:scale-110 duration-150">Home</a></li>
+    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">All Toys</a></li>
+    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">My Toys</a></li>
+    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">Add A Toy</a></li>
+    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">Blogs</a></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-white py-10">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -22,7 +22,7 @@ const Navbar = () => {
                 <a className="font-kanit text-3xl font-bold text-ruby-500 rounded-lg tracking-widest border-b-4 border-[#E32636] active:scale-95 duration-150 cursor-pointer">Hero <span className="text-charcoal">Haven</span></a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu text-charcoal menu-horizontal px-1">
+                <ul className="menu  menu-horizontal px-1">
                     {navItems}
                 </ul>
             </div>

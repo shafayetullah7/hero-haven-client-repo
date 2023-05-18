@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "daisyui": "^2.51.6",
+    "firebase": "^9.22.0",
     "google-fonts-plugin": "^5.0.2",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
