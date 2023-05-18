@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
+  const {createUser,updateUser,googleLogin} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -14,10 +17,48 @@ const Login = () => {
     const photoURL = form.photoURL.value;
 
     console.log(name, email, password, photoURL);
+    if(!email || !password){
+        setErrorMessage('All required fields must be filled');
+        return;
+    }
+    if(password.length<6){
+        setErrorMessage('password must be at least 6 characters');
+        return;
+    }
+    
+    createUser(email,password)
+    .then(result=>{
+        console.log(result.user);
+        updateUser(result.user,name,photoURL)
+        .then(result=>{
+            console.log(result)
+            navigate('/',{replace:true});
+        })
+        .catch(err=>{
+            console.log(err.message);
+            setErrorMessage('Something is wrong! Failed to register!');
+        })
+        form.reset();
+    })
+    .catch(err=>{
+        console.log(err.message);
+        setErrorMessage('Something is wrong! Failed to register!');
+    })
+
+
+
   };
 
-  const handleGoogleSignIn = async () => {
-    // Handle Google Sign-In logic
+  const handleGoogleSignIn = () => {
+    googleLogin()
+    .then(result=>{
+        console.log(result);
+        navigate('/',{replace:true});
+    })
+    .catch(err=>{
+        console.log(err.message);
+        setErrorMessage('Failed to Login');
+    })
   };
 
   return (
@@ -48,6 +89,7 @@ const Login = () => {
           <input type="text" name="photoURL" id="photoURL" className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter your photo URL"/>
         </div>
 
+        {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
         <div className="w-fit mx-auto mt-10">
           <button type="submit" className="border-2 border-ruby-500 text-ruby-500 font-bold px-4 py-2 rounded-md hover:bg-ruby-500 hover:text-white transition duration-200">Register</button>
         </div>
@@ -56,7 +98,6 @@ const Login = () => {
       <div className="divider mt-10">OR</div>
       <button onClick={handleGoogleSignIn} className="border-2 border-gray-600 w-fit mx-auto block font-bold text-black px-4 py-2 rounded hover:text-white hover:bg-gray-600 transition duration-200 mt-4 text-sm">Sign in with Google</button>
 
-        {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
         <p className="mt-4 text-center">Already have an account? <Link to="/login" className="text-ruby-500 hover:font-bold">Login</Link></p>
       </div>
     );
