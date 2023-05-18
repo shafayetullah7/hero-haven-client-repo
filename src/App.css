@@ -1,0 +1,6 @@
+.active{
+    @apply font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700;
+}
+.not-active{
+    @apply font-bold hover:scale-105 duration-150 active:scale-95 active:bg-transparent;
+}

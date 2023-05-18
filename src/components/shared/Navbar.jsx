@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../access/AuthProvider";
 
 const Navbar = () => {
@@ -13,11 +13,11 @@ const Navbar = () => {
     }
 
     const navItems = <>
-    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700  hover:scale-110 duration-150">Home</a></li>
-    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">All Toys</a></li>
-    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">My Toys</a></li>
-    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">Add A Toy</a></li>
-    <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">Blogs</a></li>
+    <li><NavLink to={`/`} className={({ isActive }) =>isActive? "active":'not-active'}>Home</NavLink></li>
+    <li><NavLink to={`/all-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>All Toys</NavLink></li>
+    <li><NavLink to={`/my-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>My Toys</NavLink></li>
+    <li><NavLink to={`/add-toy`} className={({ isActive }) =>isActive? "active":'not-active'}>Add A Toy</NavLink></li>
+    <li><NavLink to={`/blogs`} className={({ isActive }) =>isActive? "active":'not-active'}>Blogs</NavLink></li>
     </>
     return (
         <div className="navbar bg-white py-10">
