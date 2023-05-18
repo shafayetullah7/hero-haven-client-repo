@@ -24,7 +24,7 @@ const Login = () => {
       <h1 className="text-2xl font-bold mb-4 w-fit mx-auto">Login Page</h1>
 
       <form onSubmit={handleLogin}>
-        <div className="mb-4 mt-14">
+        <div className="mb-4 mt-10">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email:</label>
           <input type="email" name="email" id="email" className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-opacity-50 focus:shadow-xl focus:border-ruby-500" placeholder='Enter your email' required/>
         </div>
@@ -45,7 +45,8 @@ const Login = () => {
       </form>
       
       <div className="divider mt-10">OR</div>
-      <button onClick={handleGoogleSignIn} className="border-2 border-gray-600 w-fit mx-auto block font-bold text-black px-4 py-2 rounded hover:text-white hover:bg-gray-600 transition duration-200 mt-4">Sign in with Google</button>
+      <button onClick={handleGoogleSignIn} className="border-2 border-gray-600 w-fit mx-auto block font-bold text-black px-4 py-2 rounded hover:text-white hover:bg-gray-600 transition duration-200 mt-4 text-sm">Sign in with Google</button>
+      
       {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
       <p className="mt-4 text-center">Don't have an account? <Link to="/register" className="text-ruby-500 hover:font-bold">Register here</Link></p>
     </div>

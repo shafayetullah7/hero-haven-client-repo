@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
     const navItems = <>
     <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700  hover:scale-110 duration-150">Home</a></li>
     <li><a className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 hover:scale-110 duration-150">All Toys</a></li>
@@ -27,7 +30,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold ">Login</button>
+                <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold" onClick={()=>navigate('/login')}>Login</button>
             </div>
         </div>
     );
