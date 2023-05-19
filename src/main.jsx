@@ -11,6 +11,7 @@ import Register from './components/access/Register.jsx'
 import Main from './components/Main.jsx'
 import AddToy from './components/addToy/AddToy.jsx'
 import AllToys from './components/allToys/AllToys.jsx'
+import DetailsPage from './components/detailsPage/DetailsPage.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -33,16 +34,21 @@ const routes = createBrowserRouter([
           {
             path:'/all-toys',
             element:<AllToys></AllToys>,
+          },
+          {
+            path:'/login',
+            element:<Login></Login>
+          },
+          {
+            path:'/register',
+            element:<Register></Register>
+          },
+          {
+            path:'/details/:id',
+            element:<DetailsPage></DetailsPage>,
+            loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`)
           }
         ]
-      },
-      {
-        path:'/login',
-        element:<Login></Login>
-      },
-      {
-        path:'/register',
-        element:<Register></Register>
       }
     ]
   }

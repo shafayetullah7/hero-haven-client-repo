@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 const Banner = () => {
     AOS.init();
     return (
-        <div className="flex md:flex-row flex-col-reverse gap-32 overflow-hidden shadow-lg">
+        <div className="flex md:flex-row flex-col-reverse gap-32 rounded-lg overflow-hidden shadow-lg">
             <div className='w-full flex flex-col justify-center items-center gap-10' 
             data-aos="fade-right"
             data-aos-offset="200"
