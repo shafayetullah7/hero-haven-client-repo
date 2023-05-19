@@ -1,8 +1,13 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const Login = () => {
+const Register = () => {
+
+  AOS.init();
+
   const [errorMessage, setErrorMessage] = useState('');
   const {createUser,updateUser,googleLogin} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -62,7 +67,16 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-10 rounded-xl shadow-2xl bg-gray-100 mt-32">
+    <div className="max-w-xl mx-auto p-10 rounded-xl shadow-2xl bg-gray-100 mt-32"
+    data-aos="fade-down"
+    data-aos-offset="0"
+    data-aos-delay="50"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
+    data-aos-mirror="true"
+    data-aos-once="false"
+    data-aos-anchor-placement="top-center"
+    >
       <h1 className="text-2xl font-bold mb-4 w-fit mx-auto">Create new account</h1>
 
       <form onSubmit={handleLogin}>
@@ -103,5 +117,5 @@ const Login = () => {
     );
   };
   
-  export default Login;
+  export default Register;
   

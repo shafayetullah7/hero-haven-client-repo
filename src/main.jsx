@@ -10,6 +10,7 @@ import Login from './components/access/Login.jsx'
 import Register from './components/access/Register.jsx'
 import Main from './components/Main.jsx'
 import AddToy from './components/addToy/AddToy.jsx'
+import AllToys from './components/allToys/AllToys.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const routes = createBrowserRouter([
           {
             path:'/add-toy',
             element:<AddToy></AddToy>
+          },
+          {
+            path:'/all-toys',
+            element:<AllToys></AllToys>,
           }
         ]
       },

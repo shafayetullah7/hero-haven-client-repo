@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Select from 'react-select';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { AuthContext } from '../access/AuthProvider';
+// import SweetAlert2 from 'react-sweetalert2';
+import Swal from 'sweetalert2'
 
 const AddToy = () => {
     AOS.init();
@@ -12,37 +15,75 @@ const AddToy = () => {
         { value: 'star-wars', label: 'Star-Wars' },
         { value: 'transformer', label: 'Transformer' },
       ];
-    const [selectedOption, setSelectedOption] = useState(null);
-    const handleSubmit = (e) => {
+    const [category, setCategory] = useState(null);
+    const [error,setError] = useState('');
 
+    const {user} = useContext(AuthContext);
+    // console.log(user);
+
+
+    const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
 
     const form = e.target;
     const pictureUrl = form.pictureUrl.value;
     const name = form.name.value;
     const sellerName = form.sellerName.value;
     const sellerEmail = form.sellerEmail.value;
-    const subCategory = form.subCategory.value;
     const price = form.price.value;
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
 
-    // Use the form field values as needed (e.g., submit to backend, update state, etc.)
-    console.log('Form Values:', {
-      pictureUrl,
-      name,
-      sellerName,
-      sellerEmail,
-      subCategory,
-      price,
-      rating,
-      quantity,
-      description
-    });
 
+    const data = {
+        toyName:name,sellerEmail,sellerName,category,price,rating,quantity,description,pictureUrl,userEmail:user.email
+    }
+    console.log(data);
+
+    if(!pictureUrl || !name || !sellerEmail || !sellerName || !category || !price || !rating || !quantity || !description){
+        setError('All fields must be filled!');
+        return;
+    }
+    if(rating<0){
+        setError('Rating cannot be negative');
+        return;
+    }
+    if(price<0){
+        setError('Price cannot be negative');
+        return;
+    }
+    if(quantity<0){
+        setError('Quantity cannot be negative');
+        return;
+    }
+
+    fetch('https://hero-haven-server.vercel.app/add-toy',{
+        method:'POST',
+        headers:{
+            'content-type':'Application/json'
+        },
+        body:JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        form.reset();
+    })
+    .catch(err=>{
+        console.log(err.message);
+        setError('Failed to add toy');
+    })
     // Reset the form fields
-    form.reset();
+    
   };
 
   return (
@@ -69,12 +110,12 @@ const AddToy = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                     <label htmlFor="sellerName" className="block text-sm font-medium text-gray-700 mb-2">Seller Name:</label>
-                    <input type="text" name="sellerName" id="sellerName" className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 border-opacity-50 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter seller name" required/>
+                    <input type="text" name="sellerName" id="sellerName" defaultValue={user?.displayName||''} className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 border-opacity-50 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter seller name" required/>
                 </div>
 
                 <div>
                     <label htmlFor="sellerEmail" className="block text-sm font-medium text-gray-700 mb-2">Seller Email:</label>
-                    <input type="email" name="sellerEmail" id="sellerEmail" className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 border-opacity-50 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter seller email" required/>
+                    <input type="email" name="sellerEmail" id="sellerEmail" defaultValue={user?.email||''} className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 border-opacity-50 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter seller email" required/>
                 </div>
             </div>
 
@@ -82,7 +123,7 @@ const AddToy = () => {
                 <div>
                     <label htmlFor="subCategory" className="block text-sm font-medium text-gray-700 mb-2">Sub-Category:</label>
                     {/* <input type="text" name="subCategory" id="subCategory" className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 border-opacity-50 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter sub-category" required/> */}
-                    <Select defaultValue={selectedOption} onChange={setSelectedOption} options={options}/>
+                    <Select defaultValue={category} onChange={setCategory} options={options}/>
                 </div>
                 <div>
                     <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-2">Available Quantity:</label>
@@ -116,6 +157,7 @@ const AddToy = () => {
                 <textarea name="description" id="description" rows="4" className="w-full border-2 border-gray-300 rounded px-3 py-2 outline-none focus:border-ruby-500 border-opacity-50 focus:border-opacity-50 focus:shadow-xl" placeholder="Enter description" required></textarea>
             </div>
 
+            {error && <p className="text-red-500 mt-4">{error}</p>}
             <div className="w-fit mx-auto mt-8">
             <button type="submit" className="border-2 border-ruby-500 text-ruby-500 font-bold px-4 py-2 rounded-md hover:bg-ruby-500 hover:text-white transition duration-200">Add Now</button>
             </div>

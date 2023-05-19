@@ -11,6 +11,7 @@ export default {
           500: '#E32636',
         },
         charcoal:'#333333',
+        metalicGold:'#ffcd40'
       }
     },
     fontFamily: {
