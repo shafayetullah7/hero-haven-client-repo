@@ -51,12 +51,6 @@ const MyToys = () => {
         <div className="mt-32">
             {localLoading && <div className="w-fit mx-auto mb-5"><img src={spinner} alt="" /></div>}
             <div>
-                <div>
-                <input type="text" name="search" placeholder="Search toy" className="w-[250px] outline-none border py-2 px-3 rounded-md"/>
-                <button className="bg-base-200 active:font-bold px-3 py-2 rounded-md">Search</button>
-                </div>
-            </div>
-            <div>
             <table className="table w-full text-center">
                 {/* head */}
                 <thead>

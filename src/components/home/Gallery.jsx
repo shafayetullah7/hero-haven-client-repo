@@ -1,7 +1,13 @@
 import { useState } from "react";
 import Marquee from "react-fast-marquee";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+
 
 const Gallery = () => {
+    AOS.init();
+
     const [currentImage,setCurrentImage] = useState('');
     const images = [
         "https://i.postimg.cc/8k00WffY/dc1.jpg",
@@ -24,7 +30,16 @@ const Gallery = () => {
     ]
 
     return (
-         <div>
+        <div
+        data-aos="zoom-in"
+        data-aos-offset="50"
+        data-aos-delay="10"
+        data-aos-duration="500"
+        data-aos-easing="ease-in-out"
+        data-aos-mirror="true"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center"
+         >
             <div className="relative rounded-lg overflow-hidden py-16 bg-base-200">
                 <h1 className="text-center text-5xl font-bold">Our Collection of <span className="text-ruby-500 text-6xl">Heros</span></h1>
                 <div className=" rounded-xl mt-16 py-5">

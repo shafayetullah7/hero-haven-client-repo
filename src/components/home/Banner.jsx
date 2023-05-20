@@ -9,7 +9,7 @@ const Banner = () => {
         <div className="flex md:flex-row flex-col-reverse gap-32 rounded-lg overflow-hidden shadow-lg">
             <div className='w-full flex flex-col justify-center items-center gap-10' 
             data-aos="fade-right"
-            data-aos-offset="200"
+            data-aos-offset="20"
             data-aos-delay="50"
             data-aos-duration="1000"
             data-aos-easing="ease-in-out"
@@ -27,7 +27,7 @@ const Banner = () => {
             </div>
             <div className='w-full'
             data-aos="fade-left"
-            data-aos-offset="200"
+            data-aos-offset="20"
             data-aos-delay="50"
             data-aos-duration="1000"
             data-aos-easing="ease-in-out"

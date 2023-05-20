@@ -6,12 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const CategoryToys = ({category}) => {
-    const [options] = useState([
-        { value: 'marvel', label: 'Marvel' },
-        { value: 'dc', label: 'DC' },
-        { value: 'star-wars', label: 'Star-Wars' },
-        { value: 'transformer', label: 'Transformer' },
-    ]);
     const [toys,setToys] = useState([]);
     const navigate = useNavigate();
     

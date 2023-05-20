@@ -59,7 +59,7 @@ const routes = createBrowserRouter([
           {
             path:'/details/:id',
             element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>,
-            loader:({params})=>fetch(`https://hero-haven-server.vercel.app/${params.id}`)
+            loader:({params})=>fetch(`https://hero-haven-server.vercel.app/toys/${params.id}`)
           }
         ]
       }

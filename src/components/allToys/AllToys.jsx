@@ -7,6 +7,11 @@ const AllToys = () => {
     const [toys,setToys] = useState([]);
     const navigate = useNavigate();
     const [localLoading,setLocalLoading] = useState(true);
+    const [searchText,setSearchText] = useState('');
+    const handleSearchText = e =>{
+        setSearchText(e.target.value);
+        console.log(searchText)
+    }
 
     useEffect(()=>{
         fetch('https://hero-haven-server.vercel.app/all-toys')
@@ -17,6 +22,10 @@ const AllToys = () => {
             setLocalLoading(false);
         })
     },[])
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/search/Darth%20Vader')
+    },[searchText])
     return (
         <div>
             <div>
@@ -26,7 +35,7 @@ const AllToys = () => {
                 {localLoading && <div className="w-fit mx-auto mb-5"><img src={spinner} alt="" /></div>}
                 <div>
                     <div>
-                    <input type="text" name="search" placeholder="Search toy" className="w-[250px] outline-none border py-2 px-3 rounded-md"/>
+                    <input type="text" name="search" placeholder="Search toy" onChange={handleSearchText} value={searchText} className="w-[250px] outline-none border py-2 px-3 rounded-md"/>
                     <button className="bg-base-200 active:font-bold px-3 py-2 rounded-md">Search</button>
                     </div>
                 </div>
