@@ -1,6 +1,7 @@
 
 import Banner from "./Banner";
 import Gallery from "./Gallery";
+import ShopByCategory from "./ShopByCategory";
 
 
 const Home = () => {
@@ -11,6 +12,9 @@ const Home = () => {
             </div>
             <div className="mt-64">
                 <Gallery></Gallery>
+            </div>
+            <div className="mt-52">
+                <ShopByCategory></ShopByCategory>
             </div>
         </div>
         

@@ -4,7 +4,7 @@ import './App.css';
 
 const App = () => {
   return (
-    <div className="max-w-[1400px] mx-auto px-5">
+    <div className="max-w-[1400px] mx-auto p-1 md:px-5">
       <Outlet></Outlet>
     </div>
   );

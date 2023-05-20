@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from './AuthProvider';
 import spinner from '../../assets/spinner.gif';
 import { Navigate, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const PrivateRoute = ({children}) => {
     const {user,loading} = useContext(AuthContext);
@@ -14,6 +15,11 @@ const PrivateRoute = ({children}) => {
             return children;
         }
         else{
+            Swal.fire({
+                icon: 'error',
+                title: 'You are not logged in!',
+                text: 'Login to visit the page.',
+            })
             return <Navigate to={'/login'} state={{from:location}} replace={true}></Navigate>
         }
     }

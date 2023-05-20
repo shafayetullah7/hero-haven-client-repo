@@ -69,7 +69,7 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-10 rounded-xl shadow-2xl bg-gray-100 mt-32"
+    <div className="max-w-xl mx-auto p-10 rounded-xl shadow-2xl bg-gray-100 mt-16"
     data-aos="fade-down"
     data-aos-offset="0"
     data-aos-delay="50"

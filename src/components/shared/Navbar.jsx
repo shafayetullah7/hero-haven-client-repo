@@ -15,8 +15,8 @@ const Navbar = () => {
     const navItems = <>
     <li><NavLink to={`/`} className={({ isActive }) =>isActive? "active":'not-active'}>Home</NavLink></li>
     <li><NavLink to={`/all-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>All Toys</NavLink></li>
-    <li><NavLink to={`/my-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>My Toys</NavLink></li>
-    <li><NavLink to={`/add-toy`} className={({ isActive }) =>isActive? "active":'not-active'}>Add A Toy</NavLink></li>
+    {user && <li><NavLink to={`/my-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>My Toys</NavLink></li>}
+    {user && <li><NavLink to={`/add-toy`} className={({ isActive }) =>isActive? "active":'not-active'}>Add A Toy</NavLink></li>}
     <li><NavLink to={`/blogs`} className={({ isActive }) =>isActive? "active":'not-active'}>Blogs</NavLink></li>
     </>
     return (
@@ -42,7 +42,13 @@ const Navbar = () => {
                 {
                     !loading && <div>
                         {!user && <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold" onClick={()=>navigate('/login')}>Login</button>}
-                        {user && <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold" onClick={handleLogout}>Logout</button>}
+                        {user && <div className="flex gap-4 flex-row-reverse justify-center items-center">
+                            <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold" onClick={handleLogout}>Logout</button>
+                            {user.photoURL && <div className="tooltip tooltip-left" data-tip={user.displayName && user.displayName}>
+                                <img src={user.photoURL} className="w-12 h-12 object-cover object-center rounded-full" alt="" />
+                            </div>}
+                        </div>
+                        }
                     </div>
                 }
             </div>
