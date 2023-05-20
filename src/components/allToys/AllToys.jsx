@@ -8,9 +8,32 @@ const AllToys = () => {
     const navigate = useNavigate();
     const [localLoading,setLocalLoading] = useState(true);
     const [searchText,setSearchText] = useState('');
+    // const [searchToys,setSearchToys] = useState([]);
+
     const handleSearchText = e =>{
         setSearchText(e.target.value);
         console.log(searchText)
+    }
+    const handleSearch = () => {
+        setLocalLoading(true);
+        fetch(`http://localhost:5000/search/${searchText}`)
+        .then(res=>res.json())
+        .then(data=>{
+            setToys(data);
+            setLocalLoading(false);
+            
+        })
+    }
+
+    const handleSeeAll = () =>{
+        setLocalLoading(true);
+        fetch('https://hero-haven-server.vercel.app/all-toys')
+        .then(res=>res.json())
+        .then(data=>{
+            // console.log(data);
+            setToys(data);
+            setLocalLoading(false);
+        })
     }
 
     useEffect(()=>{
@@ -23,9 +46,6 @@ const AllToys = () => {
         })
     },[])
 
-    useEffect(()=>{
-        fetch('http://localhost:5000/search/Darth%20Vader')
-    },[searchText])
     return (
         <div>
             <div>
@@ -34,12 +54,15 @@ const AllToys = () => {
             <div className="mt-32">
                 {localLoading && <div className="w-fit mx-auto mb-5"><img src={spinner} alt="" /></div>}
                 <div>
-                    <div>
-                    <input type="text" name="search" placeholder="Search toy" onChange={handleSearchText} value={searchText} className="w-[250px] outline-none border py-2 px-3 rounded-md"/>
-                    <button className="bg-base-200 active:font-bold px-3 py-2 rounded-md">Search</button>
+                    <div className="flex flex-wrap gap-4">
+                        <div>
+                            <input type="text" name="search" placeholder="Search toy" onChange={handleSearchText} value={searchText} className="w-[200px] outline-none border py-2 px-3 rounded-md"/>
+                            <button className="bg-base-200 active:font-bold border px-3 py-2 rounded-md" disabled={!searchText} onClick={handleSearch}>Search</button>
+                        </div>
+                        <button className="bg-base-200 active:font-bold border px-3 py-2 rounded-md block" onClick={handleSeeAll}>See All Toys</button>
                     </div>
                 </div>
-                <div>
+                <div className="mt-5">
                 <table className="table w-full text-center">
                     {/* head */}
                     <thead>
