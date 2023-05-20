@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -11,6 +11,8 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const {createUser,updateUser,googleLogin} = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ const Register = () => {
         updateUser(result.user,name,photoURL)
         .then(result=>{
             console.log(result)
-            navigate('/',{replace:true});
+            navigate(from || '/',{replace:true});
         })
         .catch(err=>{
             console.log(err.message);
@@ -58,7 +60,7 @@ const Register = () => {
     googleLogin()
     .then(result=>{
         console.log(result);
-        navigate('/',{replace:true});
+        navigate(from || '/',{replace:true});
     })
     .catch(err=>{
         console.log(err.message);
@@ -112,7 +114,7 @@ const Register = () => {
       <div className="divider mt-10">OR</div>
       <button onClick={handleGoogleSignIn} className="border-2 border-gray-600 w-fit mx-auto block font-bold text-black px-4 py-2 rounded hover:text-white hover:bg-gray-600 transition duration-200 mt-4 text-sm">Sign in with Google</button>
 
-        <p className="mt-4 text-center">Already have an account? <Link to="/login" className="text-ruby-500 hover:font-bold">Login</Link></p>
+        <p className="mt-4 text-center">Already have an account? <Link to="/login" className="text-ruby-500 hover:font-bold" state={{from:location.state?.from}} replace={true}>Login</Link></p>
       </div>
     );
   };

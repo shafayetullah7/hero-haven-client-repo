@@ -12,7 +12,7 @@ const AllToys = () => {
         fetch('https://hero-haven-server.vercel.app/all-toys')
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            // console.log(data);
             setToys(data);
             setLocalLoading(false);
         })

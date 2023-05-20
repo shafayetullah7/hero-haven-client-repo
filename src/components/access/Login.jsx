@@ -9,6 +9,7 @@ const Login = () => {
   const {loginUser,googleLogin} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from;
   console.log(location);
 
   AOS.init();
@@ -29,7 +30,7 @@ const Login = () => {
     loginUser(email,password)
     .then(result=>{
         console.log(result);
-        navigate('/',{replace:true});
+        navigate(from || '/',{replace:true});
     })
     .catch(err=>{
         console.log(err.message);
@@ -42,7 +43,7 @@ const Login = () => {
     googleLogin()
     .then(result=>{
         console.log(result);
-        navigate('/',{replace:true});
+        navigate(from || '/',{replace:true});
     })
     .catch(err=>{
         console.log(err.message);
@@ -83,7 +84,7 @@ const Login = () => {
       <div className="divider mt-10">OR</div>
       <button onClick={handleGoogleSignIn} className="border-2 border-gray-600 w-fit mx-auto block font-bold text-black px-4 py-2 rounded hover:text-white hover:bg-gray-600 transition duration-200 mt-4 text-sm">Sign in with Google</button>
 
-      <p className="mt-4 text-center">Don't have an account? <Link to="/register" className="text-ruby-500 hover:font-bold">Register here</Link></p>
+      <p className="mt-4 text-center">Don't have an account? <Link to="/register" className="text-ruby-500 hover:font-bold" state={{from:location.state?.from}} replace={true}>Register here</Link></p>
     </div>
   );
 };
