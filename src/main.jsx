@@ -13,6 +13,8 @@ import AddToy from './components/addToy/AddToy.jsx'
 import AllToys from './components/allToys/AllToys.jsx'
 import DetailsPage from './components/detailsPage/DetailsPage.jsx'
 import PrivateRoute from './components/access/PrivateRoute.jsx'
+import MyToys from './components/mytoys/MyToys.jsx'
+import UpdateToy from './components/mytoys/UpdateToy.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -38,7 +40,13 @@ const routes = createBrowserRouter([
           },
           {
             path:'/my-toys',
-            
+            element:<PrivateRoute><MyToys></MyToys></PrivateRoute>
+          },
+          {
+            path:'/update-toys/:id',
+            element:<PrivateRoute><UpdateToy></UpdateToy></PrivateRoute>,
+            loader:({params})=>fetch(`https://hero-haven-server.vercel.app/toys/${params.id}`)
+
           },
           {
             path:'/login',
@@ -51,7 +59,7 @@ const routes = createBrowserRouter([
           {
             path:'/details/:id',
             element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>,
-            loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+            loader:({params})=>fetch(`https://hero-haven-server.vercel.app/${params.id}`)
           }
         ]
       }
