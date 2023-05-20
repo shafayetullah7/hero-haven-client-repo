@@ -12,6 +12,7 @@ import Main from './components/Main.jsx'
 import AddToy from './components/addToy/AddToy.jsx'
 import AllToys from './components/allToys/AllToys.jsx'
 import DetailsPage from './components/detailsPage/DetailsPage.jsx'
+import PrivateRoute from './components/access/PrivateRoute.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const routes = createBrowserRouter([
           },
           {
             path:'/details/:id',
-            element:<DetailsPage></DetailsPage>,
+            element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>,
             loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`)
           }
         ]

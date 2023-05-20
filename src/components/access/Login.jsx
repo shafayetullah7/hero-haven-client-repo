@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -8,6 +8,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const {loginUser,googleLogin} = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
   AOS.init();
 

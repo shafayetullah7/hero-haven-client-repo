@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import CommonBanner from "../shared/CommonBanner";
 import { useNavigate } from "react-router-dom";
+import spinner from '../../assets/spinner.gif';
 
 const AllToys = () => {
     const [toys,setToys] = useState([]);
     const navigate = useNavigate();
+    const [localLoading,setLocalLoading] = useState(true);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/all-toys')
+        fetch('https://hero-haven-server.vercel.app/all-toys')
         .then(res=>res.json())
         .then(data=>{
             console.log(data);
             setToys(data);
+            setLocalLoading(false);
         })
     },[])
     return (
@@ -20,7 +23,7 @@ const AllToys = () => {
                 <CommonBanner>All Toys</CommonBanner>
             </div>
             <div className="mt-32">
-                {<div className="w-fit mx-auto mb-5"><progress className="progress progress-error w-56"></progress></div>}
+                {localLoading && <div className="w-fit mx-auto mb-5"><img src={spinner} alt="" /></div>}
                 <div>
                 <table className="table w-full text-center">
                     {/* head */}
