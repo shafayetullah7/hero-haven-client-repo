@@ -28,8 +28,9 @@ const MyToys = () => {
         fetch(`https://hero-haven-server.vercel.app/toys/${id}`, {
             method: 'DELETE'
           })
-        .then(()=>{
-            // console.log(res);
+        .then((res)=>res.json())
+        .then(data=>{
+            console.log(data);
             Swal.fire({
                 position: 'center',
                 icon: 'success',

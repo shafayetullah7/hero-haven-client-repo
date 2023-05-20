@@ -11,7 +11,6 @@ const ShopByCategory = () => {
         { value: 'marvel', label: 'Marvel' },
         { value: 'dc', label: 'DC' },
         { value: 'star-wars', label: 'Star-Wars' },
-        { value: 'transformer', label: 'Transformer' },
       ]);
 
     useEffect(()=>{
@@ -46,15 +45,12 @@ const ShopByCategory = () => {
                     </TabList>
 
                     <TabPanel>
-                        <h2>Any content 1</h2>
                         {current===0 && <CategoryToys category={options[current].label} toys={toys}></CategoryToys>}
                     </TabPanel>
                     <TabPanel>
-                        <h2>Any content 2</h2>
                         {current===1 && <CategoryToys category={options[current].label} toys={toys}></CategoryToys>}
                     </TabPanel>
                     <TabPanel>
-                        <h2>Any content 2</h2>
                         {current===2 && <CategoryToys category={options[current].label} toys={toys}></CategoryToys>}
                     </TabPanel>
                 </Tabs>

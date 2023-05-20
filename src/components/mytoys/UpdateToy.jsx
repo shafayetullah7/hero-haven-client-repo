@@ -5,13 +5,13 @@ import 'aos/dist/aos.css';
 import { AuthContext } from '../access/AuthProvider';
 // import SweetAlert2 from 'react-sweetalert2';
 import Swal from 'sweetalert2'
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const UpdateToy = () => {
     AOS.init();
 
     const toy = useLoaderData();
-    console.log('toy',toy)
+    // console.log('toy',toy)
     const options = [
         { value: 'marvel', label: 'Marvel' },
         { value: 'dc', label: 'DC' },
@@ -20,7 +20,7 @@ const UpdateToy = () => {
       ];
     const [category, setCategory] = useState(toy.category);
     const [error,setError] = useState('');
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const {user} = useContext(AuthContext);
     // console.log(user);
 
@@ -69,8 +69,9 @@ const UpdateToy = () => {
         },
         body:JSON.stringify(data)
     })
-    .then(res=>{
-        console.log(res);
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data);
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -79,6 +80,7 @@ const UpdateToy = () => {
             timer: 1500
           })
         form.reset();
+        navigate(-1,{replace:true});
     })
     .catch(err=>{
         console.log(err.message);
