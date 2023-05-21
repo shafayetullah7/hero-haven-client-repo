@@ -16,12 +16,16 @@ const AllToys = () => {
     }
     const handleSearch = () => {
         setLocalLoading(true);
-        fetch(`http://localhost:5000/search/${searchText}`)
+        fetch(`https://hero-haven-server.vercel.app/search/${searchText}`)
         .then(res=>res.json())
         .then(data=>{
             setToys(data);
             setLocalLoading(false);
             
+        })
+        .catch(err=>{
+            console.log(err.message);
+            setLocalLoading(false);
         })
     }
 
@@ -34,6 +38,10 @@ const AllToys = () => {
             setToys(data);
             setLocalLoading(false);
         })
+        .catch(err=>{
+            console.log(err.message);
+            setLocalLoading(false);
+        })
     }
 
     useEffect(()=>{
@@ -42,6 +50,10 @@ const AllToys = () => {
         .then(data=>{
             // console.log(data);
             setToys(data);
+            setLocalLoading(false);
+        })
+        .catch(err=>{
+            console.log(err.message);
             setLocalLoading(false);
         })
     },[])
@@ -85,14 +97,14 @@ const AllToys = () => {
                             {/** Conditionally display the "Seller" column on medium screens and larger */}
                             <td className="hidden md:table-cell">{toy.sellerName}</td>
                             <td>
-                            <p className="w-32 truncate">{toy.toyName}</p>
+                            <p className="w-32 truncate mx-auto">{toy.toyName}</p>
                             </td>
                             {/** Conditionally display the "Category" column on medium screens and larger */}
                             <td className="hidden md:table-cell">{toy.category.label}</td>
                             <td>{toy.price}</td>
                             <td className="hidden md:table-cell">{toy.quantity}</td>
                             <td className="flex justify-start items-center gap-5">
-                            <button className="text-sm text-white bg-ruby-500 font-bold px-3 py-2 rounded-md" onClick={()=>navigate(`/details/${toy._id}`)}>View</button>
+                            <button className="text-sm block w-fit mx-auto text-white bg-ruby-500 font-bold px-3 py-2 rounded-md" onClick={()=>navigate(`/details/${toy._id}`)}>View</button>
                             </td>
                         </tr>
                         ))}

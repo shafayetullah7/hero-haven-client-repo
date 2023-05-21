@@ -7,7 +7,7 @@ const ErrorPage = () => {
             <div>
                 <Lottie animationData={errorAnimation} className=" w-[300px] mx-auto"></Lottie>
                 <p className="text-3xl font-bold text-center relative bottom-10 w-fit mx-auto">We Are Sorry, Page Not Found</p>
-                <p className="w-[70%] mx-auto text-gray-500 text-center">Unfortunately the page you were looking for could not be found. It may be temporarily unavailable, moved or no longer exist. Check the Url you entered for any mistakes and try again. <Link to={'/'} className="text-red-600 underline font-bold">Back to Homepage</Link></p>
+                <p className="w-[70%] mx-auto text-gray-500 text-center">Unfortunately the page you were looking for could not be found. It may be temporarily unavailable, moved or no longer exist. Check the Url you entered for any mistakes and try again. <Link to={'/'} replace={true} className="text-red-600 underline font-bold">Back to Homepage</Link></p>
             </div>
         </div>
     );
