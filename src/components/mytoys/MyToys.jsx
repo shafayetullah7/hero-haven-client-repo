@@ -25,22 +25,33 @@ const MyToys = () => {
 
     const handleDelete = (id)=>{
         console.log('inside delete ',id);
-        fetch(`https://hero-haven-server.vercel.app/toys/${id}`, {
-            method: 'DELETE'
+        Swal.fire({
+            title: 'Are you sure to delete?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                fetch(`https://hero-haven-server.vercel.app/toys/${id}`, {
+                    method: 'DELETE'
+                  })
+                .then((res)=>res.json())
+                .then(data=>{
+                    console.log(data);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Toy Deleted successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    setToys(toys=>toys.filter(toy=>toy._id!==id));
+                })
+                .catch(err=>console.log(err.message))
+            }
           })
-        .then((res)=>res.json())
-        .then(data=>{
-            console.log(data);
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Toy Deleted successfully',
-                showConfirmButton: false,
-                timer: 1500
-              })
-            setToys(toys=>toys.filter(toy=>toy._id!==id));
-        })
-        .catch(err=>console.log(err.message))
+        
     }
 
     const sortAscending = () =>{
@@ -78,7 +89,7 @@ const MyToys = () => {
         </div>
         <div className="mt-32">
             {localLoading && <div className="w-fit mx-auto mb-5"><img src={spinner} alt="" /></div>}
-            <div className="flex justify-end gap-2 mb-2 flex-wrap">
+            <div className="flex flex-row justify-end gap-2 mb-2 flex-wrap">
                 <button onClick={()=>sortAscending()} className="px-5 py-2 bg-base-200 border border-gray-300 rounded-lg">Sort by Price (Low to High)</button>
                 <button onClick={()=>sortDescending()} className="px-5 py-2 bg-base-200 border border-gray-300 rounded-lg">Sort by Price (High to Low)</button>
             </div>
@@ -111,7 +122,7 @@ const MyToys = () => {
                         <td className="hidden md:table-cell">{toy.category.label}</td>
                         <td>{toy.price}</td>
                         <td className="hidden md:table-cell">{toy.quantity}</td>
-                        <td className="flex justify-center items-center gap-2">
+                        <td className="flex md:flex-row flex-col items-center justify-center gap-2">
                         <button className="text-sm text-white bg-ruby-500 font-bold px-3 py-2 rounded-md" onClick={()=>handleDelete(toy._id)}>Delete</button>
                         <button className="text-sm text-white bg-emerald-500 font-bold px-3 py-2 rounded-md" onClick={()=>navigate(`/update-toys/${toy._id}`)}>Update</button>
                         </td>

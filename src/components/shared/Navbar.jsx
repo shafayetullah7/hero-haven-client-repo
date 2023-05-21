@@ -31,7 +31,7 @@ const Navbar = () => {
                 </ul>
                 </div>
                 {/* <a className="font-kanit text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-gray-700 px-7 py-2 rounded-lg tracking-widest">He<span>ro Ha</span>ven</a> */}
-                <Link to={'/'} className="font-kanit text-3xl font-bold text-ruby-500 rounded-lg tracking-widest border-b-4 border-[#E32636] active:scale-95 duration-150 cursor-pointer">Hero <span className="text-charcoal">Haven</span></Link>
+                <Link to={'/'} className="font-kanit text-2xl md:text-3xl font-bold text-ruby-500 rounded-lg tracking-widest border-b-4 border-[#E32636] active:scale-95 duration-150 cursor-pointer">Hero <span className="text-charcoal">Haven</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex gap-8 text-charcoal item-center justify-center px-1">
@@ -41,11 +41,11 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     !loading && <div>
-                        {!user && <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold" onClick={()=>navigate('/login')}>Login</button>}
-                        {user && <div className="flex gap-4 flex-row-reverse justify-center items-center">
-                            <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-5 py-2 rounded-lg font-semibold" onClick={handleLogout}>Logout</button>
+                        {!user && <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 px-2 md:px-5 py-2 rounded-lg font-semibold" onClick={()=>navigate('/login')}>Login</button>}
+                        {user && <div className="flex gap-2 md:gap-4 flex-row-reverse justify-center items-center">
+                            <button className=" text-ruby-500 border-2 border-ruby-500 hover:bg-ruby-500 hover:text-white active:scale-95 duration-150 md:px-5 px-2 py-2 rounded-lg font-semibold" onClick={handleLogout}>Logout</button>
                             {user.photoURL && <div className="tooltip tooltip-left" data-tip={user.displayName && user.displayName}>
-                                <img src={user.photoURL} className="w-12 h-12 object-cover object-center rounded-full" alt="" />
+                                <img src={user.photoURL} className="md:w-12 md:h-12 w-10 h-10 object-cover object-center rounded-full" alt="" />
                             </div>}
                         </div>
                         }
