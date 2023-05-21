@@ -2,6 +2,7 @@
 import Banner from "./Banner";
 import Gallery from "./Gallery";
 import ShopByCategory from "./ShopByCategory";
+import Stats from "./Stats";
 import Universe from "./Universe";
 
 
@@ -16,6 +17,9 @@ const Home = () => {
             </div>
             <div className="mt-52">
                 <ShopByCategory></ShopByCategory>
+            </div>
+            <div className="mt-52">
+                <Stats></Stats>
             </div>
             <div className="mt-52">
                 <Universe></Universe>
