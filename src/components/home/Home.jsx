@@ -2,6 +2,7 @@
 import Banner from "./Banner";
 import Gallery from "./Gallery";
 import ShopByCategory from "./ShopByCategory";
+import Universe from "./Universe";
 
 
 const Home = () => {
@@ -15,6 +16,9 @@ const Home = () => {
             </div>
             <div className="mt-52">
                 <ShopByCategory></ShopByCategory>
+            </div>
+            <div className="mt-52">
+                <Universe></Universe>
             </div>
         </div>
         
