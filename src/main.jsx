@@ -16,6 +16,7 @@ import PrivateRoute from './components/access/PrivateRoute.jsx'
 import MyToys from './components/mytoys/MyToys.jsx'
 import UpdateToy from './components/mytoys/UpdateToy.jsx'
 import Blog from './components/blogs/Blog.jsx'
+import PageTitle from './components/PageTitle.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -29,42 +30,69 @@ const routes = createBrowserRouter([
         children:[
           {
             path:'/',
-            element:<Home></Home>
+            element:<>
+            <PageTitle title={'Home'}></PageTitle>
+            <Home></Home>
+            </>
           },
           {
             path:'/add-toy',
-            element:<PrivateRoute><AddToy></AddToy></PrivateRoute>
+            element:<>
+            <PageTitle title={'Add toy'}></PageTitle>
+            <PrivateRoute><AddToy></AddToy></PrivateRoute>
+            </>
           },
           {
             path:'/all-toys',
-            element:<AllToys></AllToys>,
+            element:<>
+            <PageTitle title={'All toys'}></PageTitle>
+            <AllToys></AllToys>
+            </>
           },
           {
             path:'/my-toys',
-            element:<PrivateRoute><MyToys></MyToys></PrivateRoute>
+            element:<>
+            <PageTitle title={'My toys'}></PageTitle>
+            <PrivateRoute><MyToys></MyToys></PrivateRoute>
+            </>
           },
           {
             path:'/update-toys/:id',
-            element:<PrivateRoute><UpdateToy></UpdateToy></PrivateRoute>,
+            element:<>
+            <PageTitle title={'Update toy'}></PageTitle>
+            <PrivateRoute><UpdateToy></UpdateToy></PrivateRoute>
+            </>,
             loader:({params})=>fetch(`https://hero-haven-server.vercel.app/toys/${params.id}`)
 
           },
           {
             path:'/login',
-            element:<Login></Login>
+            element:<>
+            <PageTitle title={'Login'}></PageTitle>
+            <Login></Login>
+            </>
           },
           {
             path:'/register',
-            element:<Register></Register>
+            element:<>
+            <PageTitle title={'Register'}></PageTitle>
+            <Register></Register>
+            </>
           },
           {
             path:'/details/:id',
-            element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>,
+            element:<>
+            <PageTitle title={'Toy | Details'}></PageTitle>
+            <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
+            </>,
             loader:({params})=>fetch(`https://hero-haven-server.vercel.app/toys/${params.id}`)
           },
           {
             path:'/blog',
-            element:<Blog></Blog>
+            element:<>
+            <PageTitle title={'Blog'}></PageTitle>
+            <Blog></Blog>
+            </>
           }
         ]
       }

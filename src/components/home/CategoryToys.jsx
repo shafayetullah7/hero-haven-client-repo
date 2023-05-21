@@ -21,10 +21,10 @@ const CategoryToys = ({category}) => {
                     <img src={toy.pictureUrl} className='w-full h-full object-cover object-top rounded-xl' alt="toy" />
                 </div>
                 <div className='w-full relative'>
-                <div className='flex justify-between items-center p-3'>
-                    <h2 className='text-2xl font-bold text-ruby-500 w-full'>{toy.toyName}</h2>
-                    <p className='w-20'><Rating style={{ maxWidth: 250 }} value={toy.rating} readOnly /></p>
-                </div>
+                    <div className='flex justify-between items-center p-3'>
+                        <h2 className='text-2xl font-bold text-ruby-500 w-full'>{toy.toyName}</h2>
+                        <div className='w-20'><Rating style={{ maxWidth: 250 }} value={toy.rating} readOnly /></div>
+                    </div>
                     <p className='text-sm h-20 overflow-auto p-3 rounded-md'>{toy.description}</p>
                     <div className='flex justify-between items-center px-2 w-full mt-16'>
                         <p className='font-bold text-gray-600'>Price: $<span>{toy.price}</span></p>

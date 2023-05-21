@@ -21,10 +21,6 @@ const ShopByCategory = () => {
         .then(res=>res.json())
         .then(data =>setToys(data));
     },[current,options]);
-
-    useEffect(()=>{
-        console.log(toys);
-    },[toys])
     
 
     const handleClick = index =>{
