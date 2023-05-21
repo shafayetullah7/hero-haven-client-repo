@@ -21,7 +21,7 @@ const MyToys = () => {
             setLocalLoading(false);
         })
         .catch(err=>console.log(err.message))
-    },[toys]);
+    },[]);
 
     const handleDelete = (id)=>{
         console.log('inside delete ',id);
@@ -42,7 +42,35 @@ const MyToys = () => {
         })
         .catch(err=>console.log(err.message))
     }
-    
+
+    const sortAscending = () =>{
+        setLocalLoading(true);
+        const url = `https://hero-haven-server.vercel.app/all-toys?email=${user.email}&sort=1`;
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>{
+            setToys(data);
+            setLocalLoading(false);
+        })
+        .catch(err=>{
+            console.log(err.message);
+            setLocalLoading(false);
+        })
+    }  
+    const sortDescending = () =>{
+        setLocalLoading(true);
+        const url = `https://hero-haven-server.vercel.app/all-toys?email=${user.email}&sort=-1`;
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>{
+            setToys(data);
+            setLocalLoading(false);
+        })
+        .catch(err=>{
+            console.log(err.message);
+            setLocalLoading(false);
+        })
+    } 
     return (
         <div>
         <div>
@@ -50,6 +78,10 @@ const MyToys = () => {
         </div>
         <div className="mt-32">
             {localLoading && <div className="w-fit mx-auto mb-5"><img src={spinner} alt="" /></div>}
+            <div className="flex justify-end gap-2 mb-2 flex-wrap">
+                <button onClick={()=>sortAscending()} className="px-5 py-2 bg-base-200 border border-gray-300 rounded-lg">Sort by Price (Low to High)</button>
+                <button onClick={()=>sortDescending()} className="px-5 py-2 bg-base-200 border border-gray-300 rounded-lg">Sort by Price (High to Low)</button>
+            </div>
             <div>
             <table className="table w-full text-center">
                 {/* head */}
