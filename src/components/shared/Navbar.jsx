@@ -17,7 +17,7 @@ const Navbar = () => {
     <li><NavLink to={`/all-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>All Toys</NavLink></li>
     {user && <li><NavLink to={`/my-toys`} className={({ isActive }) =>isActive? "active":'not-active'}>My Toys</NavLink></li>}
     {user && <li><NavLink to={`/add-toy`} className={({ isActive }) =>isActive? "active":'not-active'}>Add A Toy</NavLink></li>}
-    <li><NavLink to={`/blogs`} className={({ isActive }) =>isActive? "active":'not-active'}>Blogs</NavLink></li>
+    <li><NavLink to={`/blog`} className={({ isActive }) =>isActive? "active":'not-active'}>Blogs</NavLink></li>
     </>
     return (
         <div className="navbar bg-white py-10">

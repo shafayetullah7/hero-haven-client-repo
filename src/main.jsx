@@ -15,6 +15,7 @@ import DetailsPage from './components/detailsPage/DetailsPage.jsx'
 import PrivateRoute from './components/access/PrivateRoute.jsx'
 import MyToys from './components/mytoys/MyToys.jsx'
 import UpdateToy from './components/mytoys/UpdateToy.jsx'
+import Blog from './components/blogs/Blog.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const routes = createBrowserRouter([
             path:'/details/:id',
             element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>,
             loader:({params})=>fetch(`https://hero-haven-server.vercel.app/toys/${params.id}`)
+          },
+          {
+            path:'/blog',
+            element:<Blog></Blog>
           }
         ]
       }
